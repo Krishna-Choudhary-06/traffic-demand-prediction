@@ -151,6 +151,25 @@ print("FOLD SCORES:", scores)
 print("==============================")
 
 # =========================
+# FEATURE IMPORTANCE
+# =========================
+
+importance = model.get_feature_importance()
+
+feature_importance = pd.DataFrame({
+    "Feature": X.columns,
+    "Importance": importance
+})
+
+feature_importance = feature_importance.sort_values(
+    by="Importance",
+    ascending=False
+)
+
+print("\nFeature Importance:\n")
+print(feature_importance)
+
+# =========================
 # SUBMISSION
 # =========================
 

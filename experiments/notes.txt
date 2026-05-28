@@ -1,0 +1,5 @@
+CPU CatBoost → best
+GPU CatBoost → worse
+LightGBM ensemble → worse
+depth=7 → worse
+lr=0.02 → worse
