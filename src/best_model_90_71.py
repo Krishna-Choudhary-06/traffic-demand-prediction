@@ -107,14 +107,12 @@ for fold, (train_idx, valid_idx) in enumerate(kf.split(X)):
     y_valid = y.iloc[valid_idx]
 
     model = CatBoostRegressor(
-    iterations=3000,
-    learning_rate=0.02,
-    depth=8,
-    loss_function="RMSE",
-    eval_metric="RMSE",
-    verbose=200,
-    task_type="GPU",
-    devices='0'
+        iterations=2000,
+        learning_rate=0.03,
+        depth=8,
+        loss_function="RMSE",
+        eval_metric="RMSE",
+        verbose=200,
     )
 
     model.fit(
