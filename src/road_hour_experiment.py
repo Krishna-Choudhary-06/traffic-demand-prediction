@@ -31,6 +31,12 @@ def process_time(df):
         df["day"] % 7 >= 5
     ).astype(int)
 
+    df["road_hour"] = (
+    df["RoadType"].astype(str)
+    + "_"
+    + df["hour"].astype(str)
+    )
+
     return df
 
 
@@ -60,7 +66,8 @@ cat_cols = [
     "RoadType",
     "LargeVehicles",
     "Landmarks",
-    "Weather"
+    "Weather",
+    "road_hour"
 ]
 
 # =========================
@@ -168,10 +175,6 @@ feature_importance = feature_importance.sort_values(
 
 print("\nFeature Importance:\n")
 print(feature_importance)
-
-
-# shap model or shave it
-model.save_model("outputs/models/best_model.cbm")
 
 # =========================
 # SUBMISSION

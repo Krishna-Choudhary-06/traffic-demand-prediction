@@ -31,6 +31,12 @@ def process_time(df):
         df["day"] % 7 >= 5
     ).astype(int)
 
+    df["geo_road"] = (
+    df["geohash"].astype(str)
+    + "_"
+    + df["RoadType"].astype(str)
+    )
+
     return df
 
 
@@ -60,7 +66,8 @@ cat_cols = [
     "RoadType",
     "LargeVehicles",
     "Landmarks",
-    "Weather"
+    "Weather",
+    "geo_road"
 ]
 
 # =========================
