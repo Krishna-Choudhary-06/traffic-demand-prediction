@@ -31,6 +31,17 @@ def process_time(df):
         df["day"] % 7 >= 5
     ).astype(int)
 
+    df["geo_road"] = (
+    df["geohash"].astype(str)
+    + "_"
+    + df["RoadType"].astype(str)
+    )
+    df["road_vehicle"] = (
+    df["RoadType"].astype(str)
+    + "_"
+    + df["LargeVehicles"].astype(str)
+    )
+
     return df
 
 
@@ -60,7 +71,9 @@ cat_cols = [
     "RoadType",
     "LargeVehicles",
     "Landmarks",
-    "Weather"
+    "Weather",
+    "geo_road",
+    "road_vehicle"
 ]
 
 # =========================
@@ -168,6 +181,10 @@ feature_importance = feature_importance.sort_values(
 
 print("\nFeature Importance:\n")
 print(feature_importance)
+
+
+# shap model or shave it
+model.save_model("outputs/models/best_model.cbm")
 
 # =========================
 # SUBMISSION
